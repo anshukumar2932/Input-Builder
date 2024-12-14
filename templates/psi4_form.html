@@ -3,10 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psi4 Form</title>
+    <title>Input Builder</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 40px;
+            padding: 0;
+            background: linear-gradient(to bottom, #ffffff, #f0f8ff);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4b0082;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            margin: 40px 20px 30px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #4b0082;
+            box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);
+            outline: none;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f8f9fa;
+            transition: background-color 0.3s ease;
+            border-radius: 6px;
+        }
+
+        input[type="file"]:hover {
+            background-color: #e2e6ea;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            background: linear-gradient(to right, #6a5acd, #4b0082);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #4b0082, #6a5acd);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            background: linear-gradient(to right, #483d8b, #4b0082);
+            transform: translateY(2px);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #successMessage {
+            margin-top: 25px;
+            padding: 18px;
+            background: linear-gradient(to right, #d4edda, #c3e6cb);
+            color: #155724;
+            border: 1px solid #155724;
+            border-radius: 8px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Psi4 Workflow</h1>
-    <p>Placeholder for Psi4-specific form.</p>
+    <h1>Input File Generator for PSI4</h1>
+    <form action="/process_psi4" method="post" enctype="multipart/form-data">
+        <label for="scftyp">SCFTYP:</label>
+        <select name="scftyp" id="scftyp" required>
+            <option value="RHF">RHF</option>
+            <option value="UHF">UHF</option>
+            <option value="ROHF">ROHF</option>
+        </select>
+        <br><br>
+
+        <label for="mult">Multiplicity:</label>
+        <input type="number" id="mult" name="mult" value="1" min="1" required>
+        <br><br>
+
+        <label for="charge">Charge:</label>
+        <input type="number" id="charge" name="charge" value="0" required>
+        <br><br>
+
+        <label for="basis">Basis Set:</label>
+        <select name="basis" id="basis" required>
+            <option value="STO-3G">STO-3G</option>
+            <option value="6-31G*">6-31G*</option>
+            <option value="aug-cc-pVDZ">aug-cc-pVDZ</option>
+            <option value="def2-SVPD">def2-SVPD</option>
+        </select>
+        <br><br>
+
+        <label for="type">Calculation Type:</label>
+        <select name="type" id="type" required>
+            <option value="ENERGY">ENERGY</option>
+            <option value="OPTIMIZE">OPTIMIZE</option>
+        </select>
+        <br><br>
+
+        <label for="addon">Additional Options:</label>
+        <select name="addon" id="addon">
+            <option value="NONE">NONE</option>
+            <option value="IR">IR</option>
+        </select>
+        <br><br>
+
+        <label for="dfttyp">DFTTYP:</label>
+        <select name="dfttyp" id="dfttyp">
+            <option value="NONE">NONE</option>
+            <option value="B3LYP">B3LYP</option>
+            <option value="PBE0">PBE0</option>
+            <option value="M062X">M062X</option>
+        </select>
+        <br><br>
+
+        <label for="file">Upload XYZ File:</label>
+        <input type="file" id="file" name="file" accept=".xyz" required>
+        <br><br>
+
+        <button type="submit">Generate Input File</button>
+    </form>
 </body>
 </html>
