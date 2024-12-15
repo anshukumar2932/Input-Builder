@@ -118,8 +118,8 @@
     </style>
 </head>
 <body>
-    <h1>Input File Generator for GAMESS</h1>
-    <form action="/process_gamess" method="post" enctype="multipart/form-data">
+    <h1>Input File Generator for {{ naam }}</h1>
+    <form action="/process_{{ naam }}" method="post" enctype="multipart/form-data">
         <label for="scftyp">SCFTYP:</label>
         <select name="scftyp" id="scftyp" required>
             <option value="RHF">RHF</option>
@@ -138,13 +138,9 @@
 
         <label for="basis">Basis Set:</label>
         <select name="basis" id="basis" required>
-            <option value="STO-3G">STO-3G</option>
-            <option value="6-31G*">6-31G*</option>
-            <option value="aug-cc-pVDZ">aug-cc-pVDZ</option>
-            <option value="AM1">AM1</option>
-            <option value="PM3">PM3</option>
-            <option value="PM6">PM6</option>
-            <option value="N311">N311</option>
+            {% for i in typbasis %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
         </select>
         <br><br>
 
@@ -177,6 +173,7 @@
         <br><br>
 
         <button type="submit">Generate Input File</button>
+        <br><br>
     </form>
 </body>
 </html>
