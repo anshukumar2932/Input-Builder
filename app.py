@@ -1,7 +1,6 @@
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, render_template, request, jsonify, send_file, Response
 import os
 import re
-
 # Flask App
 app = Flask(__name__)
 
@@ -107,15 +106,19 @@ print_variables(){addon_content}
 def entry_page():
     return render_template('entry.html')
 
-@app.route('/gamess')
-def gamess_page():
-    return render_template('gamess_form.html')
+@app.route("/forms", methods=["GET", "POST"])
+def forms():
+    ftype = request.args.get("type")
 
-@app.route('/psi4')
-def psi4_page():
-    return render_template('psi4_form.html')
+    if ftype == 'gamess':
+        basislist = ["STO-3G", "6-31G*", "aug-cc-pVDZ", "AM1", "PM3", "PM6", "N311"]
+        return render_template("mainform.html", naam="GAMESS", typbasis=basislist)
+    if ftype == 'psi4':
+        basislist = ["STO-3G", "6-31G*", "aug-cc-pVDZ", "def2-SVPD"]
+        return render_template("mainform.html", naam="PSI4", typbasis=basislist)
+    return "no form found"
 
-@app.route('/process_gamess', methods=['POST'])
+@app.route('/process_GAMESS', methods=['POST'])
 def process_gamess():
     scftyp = request.form.get("scftyp")
     mult = request.form.get("mult")
@@ -131,14 +134,9 @@ def process_gamess():
 
     file_data = process_xyz_file_gamess(file)
     generated_content = generate_input_file_gamess(scftyp, mult, charge, basis, type_, addon, dfttyp, file_data)
+    return Response(generated_content, mimetype='text/plain',headers={'Content-disposition': f'attachment; filename=generated_input_gamess.txt'})
 
-    output_path = "generated_input_gamess.txt"
-    with open(output_path, "w") as f:
-        f.write(generated_content)
-
-    return send_file(output_path, as_attachment=True)
-
-@app.route('/process_psi4', methods=['POST'])
+@app.route('/process_PSI4', methods=['POST'])
 def process_psi4():
     scftyp = request.form.get("scftyp")
     mult = request.form.get("mult")
@@ -155,11 +153,7 @@ def process_psi4():
     file_data = process_xyz_file_psi4(file)
     generated_content = generate_input_file_psi4(scftyp, mult, charge, basis, type_, addon, dfttyp, file_data)
 
-    output_path = "generated_input_psi4.txt"
-    with open(output_path, "w") as f:
-        f.write(generated_content)
-
-    return send_file(output_path, as_attachment=True)
+    return Response(generated_content, mimetype='text/plain',headers={'Content-disposition': f'attachment; filename=generated_input_psi4.txt'})
 
 if __name__ == '__main__':
     app.run(debug=True)
