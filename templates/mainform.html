@@ -13,49 +13,53 @@
             color: #333;
             line-height: 1.6;
         }
-
+    
         h1 {
             text-align: center;
             color: #4b0082;
-            font-size: 2.8em;
+            font-size: 2.5em;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            margin: 40px 20px 30px;
+            margin: 30px 15px 25px;
         }
-
+    
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #f9f9f9;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
+    
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
-
+    
         label {
             display: block;
             font-weight: bold;
             color: #333;
             margin-bottom: 10px;
-            font-size: 1.1em;
+            font-size: 1em;
         }
-
+    
         input, select {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.1);
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-
+    
         input:focus, select:focus {
             border-color: #4b0082;
             box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);
             outline: none;
         }
-
+    
         input[type="file"] {
             padding: 10px;
             border: 1px solid #ddd;
@@ -63,14 +67,14 @@
             transition: background-color 0.3s ease;
             border-radius: 6px;
         }
-
+    
         input[type="file"]:hover {
             background-color: #e2e6ea;
         }
-
+    
         button {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             font-size: 16px;
             background: linear-gradient(to right, #6a5acd, #4b0082);
             color: white;
@@ -80,19 +84,19 @@
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
+    
         button:hover {
             background: linear-gradient(to right, #4b0082, #6a5acd);
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-
+    
         button:active {
             background: linear-gradient(to right, #483d8b, #4b0082);
             transform: translateY(2px);
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
-
+    
         #successMessage {
             margin-top: 25px;
             padding: 18px;
@@ -104,7 +108,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             animation: fadeIn 0.5s ease;
         }
-
+    
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -115,7 +119,59 @@
                 transform: translateY(0);
             }
         }
+    
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+    
+            .container {
+                max-width: 95%;
+                padding: 15px;
+            }
+    
+            label {
+                font-size: 0.9em;
+            }
+    
+            input, select {
+                padding: 10px;
+                font-size: 14px;
+            }
+    
+            button {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+                margin: 20px 10px;
+            }
+    
+            .container {
+                padding: 10px;
+            }
+    
+            label {
+                font-size: 0.8em;
+            }
+    
+            input, select {
+                padding: 8px;
+                font-size: 13px;
+            }
+    
+            button {
+                padding: 8px;
+                font-size: 13px;
+            }
+        }
     </style>
+    
 </head>
 <body>
     <h1>Input File Generator for {{ naam }}</h1>
