@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, send_file, Response
 import os
 import re
+from gamess import *
 # Flask App
 app = Flask(__name__)
 
@@ -168,6 +169,10 @@ def file():
             return jsonify({"error": "No file provided or file is invalid."}), 400            
         else:
             data=str("File uploaded successfully! software="+software)
+            if software=="GAMESS":
+                data += "\t "+trial()
+            elif software=="PSI4":
+                data += "\t PSI4 is not active currently"
             return render_template("file.html", mode="output", data=data)
 
 if __name__ == '__main__':
