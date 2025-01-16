@@ -1,0 +1,235 @@
+/* Global Variables */
+:root {
+    --primary-color: #4b0082;
+    --secondary-color: #6a5acd;
+    --light-bg-color: #f9f9f9;
+    --text-color: #333;
+    --success-bg-color: #d4edda;
+    --success-border-color: #155724;
+    --font-family: 'Arial', sans-serif;
+    --font-size-base: 16px;
+    --border-radius: 10px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Global Styles */
+body {
+    font-family: var(--font-family);
+    margin: 40px;
+    padding: 0;
+    background-color: rgb(230, 244, 249);
+    color: var(--text-color);
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2.5em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 30px 15px 25px;
+}
+
+.button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1rem; /* Use rem for scalability */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.button.gamess {
+    background-color: #007BFF;
+}
+.button.gamess:hover {
+    background-color: #0056b3;
+}
+.button.psi4 {
+    background-color: #28a745;
+}
+.button.psi4:hover {
+    background-color: #1e7e34;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #4b0082;
+    box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);
+    outline: none;
+}
+
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+}
+
+input[type="file"]:hover {
+    background-color: #e2e6ea;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background: linear-gradient(to right, #6a5acd, #4b0082);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background: linear-gradient(to right, #4b0082, #6a5acd);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    background: linear-gradient(to right, #483d8b, #4b0082);
+    transform: translateY(2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#successMessage {
+    margin-top: 25px;
+    padding: 18px;
+    background: linear-gradient(to right, #d4edda, #c3e6cb);
+    color: #155724;
+    border: 1px solid #155724;
+    border-radius: 8px;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .container {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    label {
+        font-size: 0.9em;
+    }
+
+    input, select {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+        margin: 20px 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    label {
+        font-size: 0.8em;
+    }
+
+    input, select {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    button {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+input[type="file"],
+input[type="radio"] {
+    margin-top: 5px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}

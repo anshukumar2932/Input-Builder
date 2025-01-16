@@ -3,73 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Builder</title>
-    <style>
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin: 20px; 
-        padding: 0;
-    }
-    .container {
-        margin: 0 auto;
-        max-width: 90%; 
-        width: 500px; 
-        padding: 20px;
-        border: 2px solid #ccc;
-        border-radius: 10px;
-        background-color: #f9f9f9;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-        color: #333;
-        font-size: 2rem; /* Use rem for scalable text */
-    }
-    .button {
-        display: inline-block;
-        margin: 10px;
-        padding: 10px 20px;
-        font-size: 1rem; /* Use rem for scalability */
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-    .button.gamess {
-        background-color: #007BFF;
-    }
-    .button.gamess:hover {
-        background-color: #0056b3;
-    }
-    .button.psi4 {
-        background-color: #28a745;
-    }
-    .button.psi4:hover {
-        background-color: #1e7e34;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            padding: 10px; 
-        }
-        h1 {
-            font-size: 1.5rem; 
-        }
-        .button {
-            padding: 8px 16px;
-            font-size: 0.9rem; 
-        }
-    }
-</style>
-
-    
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Input Builder</title>   
 </head>
 <body>
     <div class="container">
-        <h1>Choose Computational Software</h1>
-        <p>Select the software you'd like to use:</p>
+        <h1>Select Computational Software</h1>
+        <p>Choose the software you would like to use:</p>
         <a href="/forms?type=gamess" class="button gamess">GAMESS</a>
         <a href="/forms?type=psi4" class="button psi4">Psi4</a>
     </div>
+    <div class="container">
+        <h1>Upload a File</h1>
+        <p>Choose the software you would like to use:</p>
+        <a href="/forms?type=fgamess" class="file button gamess">GAMESS</a>
+        <a href="/forms?type=fpsi4" class="file button psi4">Psi4</a>
+    </div>
 </body>
 </html>
+
