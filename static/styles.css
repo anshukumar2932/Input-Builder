@@ -6,68 +6,122 @@
     --text-color: #333;
     --success-bg-color: #d4edda;
     --success-border-color: #155724;
+    --button-hover-bg-color: #0056b3;
+    --file-hover-bg-color: #e2e6ea;
     --font-family: 'Arial', sans-serif;
     --font-size-base: 16px;
-    --border-radius: 10px;
+    --border-radius: 8px;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --transition-duration: 0.3s;
+    --focus-box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);
 }
 
 /* Global Styles */
 body {
     font-family: var(--font-family);
+    font-size: var(--font-size-base);
     margin: 40px;
     padding: 0;
     background-color: rgb(230, 244, 249);
     color: var(--text-color);
     line-height: 1.6;
-    text-align: center;
+    text-align: left; /* Default alignment is left */
 }
 
 /* Headings */
 h1 {
-    text-align: center;
     color: var(--primary-color);
-    font-size: 2.5em;
+    font-size: 2.5rem;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     margin: 30px 15px 25px;
+    text-align: center; /* Centered alignment for headings */
 }
 
+/* Buttons */
 .button {
     display: inline-block;
     margin: 10px;
-    padding: 10px 20px;
-    font-size: 1rem; /* Use rem for scalability */
+    padding: 0.625rem 1.25rem; /* Consistent use of rem */
+    font-size: 1rem;
     color: white;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+    text-align: center; /* Buttons remain centered */
 }
+
 .button.gamess {
-    background-color: #007BFF;
+    background-color: #007bff;
 }
+
 .button.gamess:hover {
-    background-color: #0056b3;
+    background-color: var(--button-hover-bg-color);
 }
+
 .button.psi4 {
     background-color: #28a745;
 }
+
 .button.psi4:hover {
     background-color: #1e7e34;
 }
 
-/* Form Styles */
-.form-group {
-    margin-bottom: 20px;
+/* Button Styles */
+button {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto; /* Centers the button */
+    padding: 0.75rem;
+    font-size: 1rem;
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background var(--transition-duration), transform 0.2s ease, box-shadow var(--transition-duration);
+    box-shadow: var(--box-shadow);
+    display: block; 
+    text-align: center; /* Ensures the button is a block element to center it */
 }
+
+button:hover {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    background: linear-gradient(to right, #483d8b, var(--primary-color));
+    transform: translateY(2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:focus, .btn:focus, input:focus {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 4px;
+}
+
 
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--light-bg-color);
     border: 2px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center; 
+}
+
+.container2 {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--light-bg-color);
+    border: 2px solid #ccc;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: left; 
 }
 
 .form-group {
@@ -77,74 +131,79 @@ h1 {
 label {
     display: block;
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 10px;
     font-size: 1em;
+    text-align: left; 
 }
 
 input, select {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
+    padding: 0.75rem;
+    font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+    text-align: left; /* Ensure text input is left-aligned */
 }
 
 input:focus, select:focus {
-    border-color: #4b0082;
-    box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);
+    border-color: var(--primary-color);
+    box-shadow: var(--focus-box-shadow);
     outline: none;
 }
 
 input[type="file"] {
     padding: 10px;
     border: 1px solid #ddd;
-    background-color: #f8f9fa;
-    transition: background-color 0.3s ease;
-    border-radius: 6px;
-}
-
-input[type="file"]:hover {
-    background-color: #e2e6ea;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    background: linear-gradient(to right, #6a5acd, #4b0082);
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
     color: white;
-    border: none;
-    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-duration);
+    text-align: left;
+}
+
+input[type="file"]::file-selector-button {
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: var(--secondary-color);
 }
 
 button:hover {
-    background: linear-gradient(to right, #4b0082, #6a5acd);
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-button:active {
-    background: linear-gradient(to right, #483d8b, #4b0082);
-    transform: translateY(2px);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+
+.errorMessage {
+    color: red;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    margin-top: 10px;
 }
 
 #successMessage {
     margin-top: 25px;
     padding: 18px;
-    background: linear-gradient(to right, #d4edda, #c3e6cb);
-    color: #155724;
-    border: 1px solid #155724;
-    border-radius: 8px;
+    background: linear-gradient(to right, var(--success-bg-color), #c3e6cb);
+    color: var(--success-border-color);
+    border: 1px solid var(--success-border-color);
+    border-radius: var(--border-radius);
     display: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     animation: fadeIn 0.5s ease;
+    text-align: left; 
 }
 
 @keyframes fadeIn {
@@ -158,10 +217,47 @@ button:active {
     }
 }
 
+/* Radio Group */
+.radio-group {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow wrapping to new lines when space is limited */
+    align-items: center;
+    justify-content: flex-start; /* Align items to start of the container */
+    gap: 10px; /* Spacing between radio buttons */
+}
+
+input[type="radio"] {
+    margin-right: 5px; /* Space between the radio button and its label */
+}
+
+label {
+    display: inline-flex; /* Keeps label and radio button aligned */
+    align-items: center;
+    margin-bottom: 10px; /* Add spacing between rows in wrapped layout */
+    cursor: pointer; /* Change cursor to pointer for better UX */
+}
+
+/* Utility Classes */
+.btn {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-duration);
+}
+
+.btn:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     h1 {
-        font-size: 2em;
+        font-size: 2rem;
     }
 
     .container {
@@ -174,19 +270,19 @@ button:active {
     }
 
     input, select {
-        padding: 10px;
-        font-size: 14px;
+        padding: 0.625rem;
+        font-size: 0.875rem;
     }
 
     button {
-        padding: 10px;
-        font-size: 14px;
+        padding: 0.625rem;
+        font-size: 0.875rem;
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.8em;
+        font-size: 1.8rem;
         margin: 20px 10px;
     }
 
@@ -199,37 +295,12 @@ button:active {
     }
 
     input, select {
-        padding: 8px;
-        font-size: 13px;
+        padding: 0.4rem;
+        font-size: 0.75rem;
     }
 
     button {
-        padding: 8px;
-        font-size: 13px;
+        padding: 0.5rem;
+        font-size: 0.8125rem;
     }
-}
-input[type="file"],
-input[type="radio"] {
-    margin-top: 5px;
-}
-
-.radio-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
 }
