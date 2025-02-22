@@ -1,5 +1,4 @@
 from im import *
-import re
 # Atomic number mapping for file processing (Global scope)
 element_to_atomic_number = {
     "H" :   1, "He":   2, "Li":   3, "Be":   4, "B" :   5, "C" :   6, "N" :   7, "O" :   8, "F" :   9, "Ne":  10,
