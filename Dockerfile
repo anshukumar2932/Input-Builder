@@ -1,23 +1,21 @@
-# Use an official Python runtime as a parent image
-FROM python:3.10
+# Use an official Docker-enabled Python image
+FROM docker:latest
+
+# Install Python and necessary packages
+RUN apk add --no-cache python3 py3-pip
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the requirements file
+# Copy requirements and install dependencies
 COPY requirements.txt .
-
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Docker inside the container
-RUN apt-get update && apt-get install -y docker.io
+# Install Docker inside the container (needed for Docker-in-Docker)
+RUN apk add --no-cache docker-cli
 
 # Copy the application files
 COPY . .
 
-# Expose the port your Flask app runs on
-EXPOSE 5000
-
-# Start the application
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+# Start Docker inside the container
+CMD ["sh", "-c", "dockerd-entrypoint.sh & gunicorn -b 0.0.0.0:5000 app:app"]
