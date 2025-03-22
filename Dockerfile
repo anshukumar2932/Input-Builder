@@ -1,17 +1,23 @@
-# Use official Python image
-FROM python:3.9
+# Use an official Python runtime as a parent image
+FROM python:3.10
 
 # Set the working directory
 WORKDIR /app
 
-# Copy application files
-COPY . /app
+# Copy the requirements file
+COPY requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 5000
+# Install Docker inside the container
+RUN apt-get update && apt-get install -y docker.io
+
+# Copy the application files
+COPY . .
+
+# Expose the port your Flask app runs on
 EXPOSE 5000
 
-# Run the Flask app
-CMD ["python", "app.py"]
+# Start the application
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
