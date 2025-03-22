@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSI4 Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to PSI4 Web</h1>
+    <p>Enter input data below:</p>
+    
+    <form action="/process" method="POST">
+        <input type="text" name="input_data" placeholder="Enter data" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+

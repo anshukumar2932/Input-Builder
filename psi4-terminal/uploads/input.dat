@@ -1,0 +1,10 @@
+
+molecule {
+  0 1
+  O  0.0  0.0  0.0
+  H  0.0  0.0  0.96
+  H  0.92  0.0 -0.32
+}
+
+set basis sto-3g
+energy('hf')

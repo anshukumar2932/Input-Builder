@@ -1,39 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/styles.css">
-    <title>Upload for {{ naam }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Upload for {{ naam }}{% endblock %}  
+{% block content %}
     {% if mode == 'input' %}
         <div class="container2">
-            <h1>Upload a File to Generate Output for {{ naam }}</h1>
+            <h1>Upload a File to Generate Output for PSI4</h1>
             <form action="/file" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="file">Upload Your File:</label>
                     <input type="file" id="file" name="file" required>
                 </div>
                 <div class="form-group">
-                    <label>Select Software:</label>
-                    {% if naam in ['GAMESS', 'PSI4'] %}
+                    <label>Select Software:</label>                    
                         <div class="radio-group">
-                            <input type="radio" id="software_{{ naam }}" name="software" value="{{ naam }}" checked>
-                            <label for="software_{{ naam }}">{{ naam }}</label>
-                        </div>
-                    {% endif %}
+                            <input type="radio" name="software" value="PSI4" checked>
+                            <label>PSI4</label>
+                        </div>                    
                 </div>
                 <button type="submit" class="btn">Submit</button>
             </form>
         </div>
     {% endif %}
-
-    {% if mode == 'output' %}
-        <div class="container">
-            <p>{{ data }}</p>
-        </div>
-    {% endif %}
-</body>
-</html>
-
+{% endblock %}
